@@ -75,7 +75,7 @@ A `behavior` function with no co-located spec reads 0% coverage. Simplifying it 
 ```
 
 If it fails the test, it belongs in the code as a name, a structure change, or (rarely) a comment.
-See `./code-quality.md` for when a comment is allowed.
+See `.agents/rules/code-quality.md` for when a comment is allowed.
 
 ## Keep it maintainable
 
