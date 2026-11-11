@@ -13,3 +13,12 @@ The layout and contents may change or the repository may be removed.
 
 A consumer mounts this repository as a read-only git submodule at `devkit/` and symlinks the items
 it uses into its own agent config. Changes are made here, by pull request, never inside a consumer.
+
+## Writing a shared file
+
+A shared skill or rule is read inside a consumer, from its real location under `devkit/`:
+
+- Refer to another shared file by relative path (`./adr.md`).
+- Refer to a file the consumer owns by its path from the consumer's root (`.agents/GLOSSARY.md`).
+  That path is then a requirement on every consumer that links the file in; the consumer's
+  `doc-links` run fails when it is missing.
