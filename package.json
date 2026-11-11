@@ -1,0 +1,18 @@
+{
+  "name": "frontend-devkit",
+  "private": true,
+  "description": "Agent skills, rules and developer tools shared by Blockscout frontend repositories",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint:tsc": "tsc -p tsconfig.json",
+    "lint:doc-links": "./tools/doc-links/run.sh",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  }
+}

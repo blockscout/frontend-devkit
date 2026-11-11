@@ -1,0 +1,17 @@
+{
+  // Type-checks the tools together with their specs. Each tool compiles on run with its own tsconfig.json.
+  "compilerOptions": {
+    "module": "node16",
+    "target": "es2022",
+    "moduleResolution": "node16",
+    "lib": [ "es2022" ],
+    "types": [ "node" ],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
+  },
+  "include": [ "tools/**/*.ts" ],
+  "exclude": [ "node_modules", "**/dist" ]
+}
