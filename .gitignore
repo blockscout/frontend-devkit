@@ -1,3 +1,6 @@
 node_modules
 dist
 .DS_Store
+
+# Children, as listed in children.txt (npm run lint:children)
+/frontend/

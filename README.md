@@ -1,24 +1,32 @@
-# frontend-devkit
+# frontend-home
 
-Agent skills, rules and developer tools shared by Blockscout frontend repositories.
+The home repo for the Blockscout frontend repositories: shared agent skills, rules and developer tools.
+Agent sessions start here. The project repositories, the **children**, are cloned inside it and
+gitignored.
 
-**Status: prototype.** See [blockscout/frontend#3882](https://github.com/blockscout/frontend/issues/3882).
-The layout and contents may change or the repository may be removed.
+**Status: phase 1.** See [blockscout/frontend#3882](https://github.com/blockscout/frontend/issues/3882).
+`frontend` is the only child, and the layout may still change.
 
 | Path | What it is |
 |---|---|
-| `skills/` | Agent skills, one folder per skill |
-| `rules/` | Coding rules with frontmatter for Claude Code (`paths`) and Cursor (`globs`) |
-| `tools/` | Developer tools run from a consumer repository |
+| `.agents/` | Agent instructions, skills and rules, reached by Claude Code and Cursor through symlinks ([`.agents/README.md`](.agents/README.md)) |
+| `children.txt` | The children, by name and repository URL |
+| `scripts/` | Cloning the children, and the check that the ignore files list them |
+| `tools/` | Developer tools run in a child |
 
-A consumer mounts this repository as a read-only git submodule at `devkit/` and symlinks the items
-it uses into its own agent config. Changes are made here, by pull request, never inside a consumer.
+## Children
+
+`scripts/bootstrap.sh` clones every child in `children.txt` that is missing, beside this README. A child
+already present is left as it is.
+
+Each child is listed in two ignore files: `.gitignore` keeps it out of home's history, and `.ignore` lets a
+search from the home root reach it. `npm run lint:children` fails when either file disagrees with
+`children.txt`.
 
 ## Writing a shared file
 
-A shared skill or rule is read inside a consumer, from its real location under `devkit/`:
+A shared skill or rule is read while working in a child, the active child that `.agents/AGENTS.md` defines:
 
 - Refer to another shared file by relative path (`./adr.md`).
-- Refer to a file the consumer owns by its path from the consumer's root (`.agents/GLOSSARY.md`).
-  That path is then a requirement on every consumer that links the file in; the consumer's
-  `doc-links` run fails when it is missing.
+- Refer to a file the child owns by its path from the child's root (`.agents/GLOSSARY.md`). It resolves in
+  the active child.

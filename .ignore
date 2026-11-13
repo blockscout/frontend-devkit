@@ -1,0 +1,5 @@
+# Search tools built on ripgrep, Claude Code's Grep and Glob among them, skip gitignored paths.
+# This file lets a search from the home root reach the children.
+
+# Children, as listed in children.txt (npm run lint:children)
+!/frontend/
